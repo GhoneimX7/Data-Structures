@@ -3,8 +3,8 @@ package com.company;
 public class MergeSort {
 
 
-    private int[] Array;
-    private int[] Temp_Array;
+    private int[] array;
+    private int[] tempArray;
 
     public MergeSort(int[] arr) {
         sort(arr);
@@ -12,52 +12,52 @@ public class MergeSort {
 
     public void sort(int[] Array) {
 
-        this.Array = Array;
-        this.Temp_Array = new int[Array.length];
+        this.array = Array;
+        this.tempArray = new int[Array.length];
         Divide(0, Array.length - 1);
     }
 
-    public void Divide(int Lower_Index, int Higher_Index) {
-        if (Lower_Index < Higher_Index) {
+    public void Divide(int lowerIndex, int higherIndex) {
+        if (lowerIndex < higherIndex) {
 
-            int Middle = Lower_Index + (Higher_Index - Lower_Index) / 2;
-            Divide(Lower_Index, Middle);
-            Divide(Middle + 1, Higher_Index);
-            Merge(Lower_Index, Middle, Higher_Index);
+            int middle = lowerIndex + (higherIndex - lowerIndex) / 2;
+            Divide(lowerIndex, middle);
+            Divide(middle + 1, higherIndex);
+            Merge(lowerIndex, middle, higherIndex);
         }
 
     }
 
-    public void Merge(int Lower_Index, int Middle, int Higher_Index) {
+    public void Merge(int lowerIndex, int middle, int higherIndex) {
 //        // same thing if we used
-//        for (int i = Lower_Index; i <= Higher_Index; i++) {
+//        for (int i = lowerIndex; i <= higherIndex; i++) {
 //            Temp_Array[i] = Array[i];
 //        }
-        if (Higher_Index + 1 - Lower_Index >= 0)
-            System.arraycopy(Array, Lower_Index, Temp_Array, Lower_Index, Higher_Index + 1 - Lower_Index);
+        if (higherIndex + 1 - lowerIndex >= 0)
+            System.arraycopy(array, lowerIndex, tempArray, lowerIndex, higherIndex + 1 - lowerIndex);
 
 
-        int i = Lower_Index;
-        int j = Middle + 1;
-        int k = Lower_Index;
+        int i = lowerIndex;
+        int j = middle + 1;
+        int k = lowerIndex;
 
-        while (i <= Middle && j <= Higher_Index) {
+        while (i <= middle && j <= higherIndex) {
 
-            if (Temp_Array[i] <= Temp_Array[j]) {
+            if (tempArray[i] <= tempArray[j]) {
 
-                Array[k] = Temp_Array[i];
+                array[k] = tempArray[i];
                 i++;
 
             } else {
 
-                Array[k] = Temp_Array[j];
+                array[k] = tempArray[j];
                 j++;
             }
 
             k++;
         }
-        while (i <= Middle) {
-            Array[k] = Temp_Array[i];
+        while (i <= middle) {
+            array[k] = tempArray[i];
             k++;
             i++;
         }
